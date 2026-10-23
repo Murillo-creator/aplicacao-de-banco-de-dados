@@ -62,13 +62,13 @@ USE DB_T05072C_MURILLO_FREITAS;
 -- criando tabela mensagens
 CREATE TABLE Mensagens(
     id_mensagem INT PRIMARY KEY AUTO_INCREMENT,
-    texto_mensagens TEXT NOT NULL,
+    texto_mensagem TEXT NOT NULL,
     data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_contato INT,
     FOREIGN KEY (id_contato) REFERENCES Contatos(id_contato)
 );
 
-INSERT INTO Mensagens (texto_mensagens, id_contato) VALUES
+INSERT INTO Mensagens (texto_mensagem, id_contato) VALUES
 ('Ola! Tudo bem?', 1),
 ('Falaa ai, deu tudo certo com o trabalho ontem?', 2),
 ('Tudo bem? Ja comprou os ingredientes?', 3),
