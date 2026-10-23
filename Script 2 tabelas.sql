@@ -57,3 +57,22 @@ SELECT * FROM Contatos WHERE telefone LIKE '(11)%';
 
 -- atualizando
 UPDATE Contatos SET telefone = '(21)90000-0000' WHERE nome_contato = 'Joao';
+
+USE DB_T05072C_MURILLO_FREITAS;
+-- criando tabela mensagens
+CREATE TABLE Mensagens(
+    id_mensagem INT PRIMARY KEY AUTO_INCREMENT,
+    texto_mensagens TEXT NOT NULL,
+    data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_contato INT,
+    FOREIGN KEY (id_contato) REFERENCES Contatos(id_contato)
+);
+
+INSERT INTO Mensagens (texto_mensagens, id_contato) VALUES
+('Ola! Tudo bem?', 1),
+('Falaa ai, deu tudo certo com o trabalho ontem?', 2),
+('Tudo bem? Ja comprou os ingredientes?', 3),
+('Lembra daquela jaqueta que te falei? Esta em promocao', 4),
+('Onde que fica aquela padaria que voce foi?', 5);
+
+SELECT * FROM Mensagens;
