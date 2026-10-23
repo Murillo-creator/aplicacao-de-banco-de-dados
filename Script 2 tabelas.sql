@@ -76,3 +76,19 @@ INSERT INTO Mensagens (texto_mensagens, id_contato) VALUES
 ('Onde que fica aquela padaria que voce foi?', 5);
 
 SELECT * FROM Mensagens;
+
+-- exibe as mensagens existentes
+SELECT Contatos.nome_contato, Mensagens.texto_mensagem, Mensagens.data_envio
+FROM Mensagens
+JOIN Contatos ON Mensagens.id_contato = Contatos.id_contato;
+
+-- exibe apenas a mensagem do contato selecionado
+SELECT Contatos.nome_contato, Mensagens.texto_mensagem, Mensagens.data_envio
+FROM Mensagens
+JOIN Contatos ON Mensagens.id_contato = Contatos.id_contato
+WHERE Contatos.nome_contato = 'Ana';
+
+-- exibe todos os contatos mesmo sem registro de mensagem
+SELECT Contatos.nome_contato, Mensagens.texto_mensagem, Mensagens.data_envio
+FROM Contatos
+LEFT JOIN Mensagens ON Contatos.id_contato = Mensagens.id_contato;
