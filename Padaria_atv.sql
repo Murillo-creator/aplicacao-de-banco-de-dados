@@ -58,7 +58,7 @@ SELECT * FROM Padaria_produto;
 
 INSERT INTO Padaria_venda (id_produto, quantidade, data_venda)
 VALUES 
-       -- vendas do dia 20
+       -- vendas do dia 2026-08-20
        (2, 3, '2026-08-20'),
        (1, 4, '2026-08-20'),
        (3, 2, '2026-08-20'),
@@ -97,3 +97,61 @@ VALUES
         (5,  3.000, '2026-08-24');
 
 SELECT * FROM Padaria_venda;
+
+-- Praticando consultas
+USE DB_T05072C_MURILLO_FREITAS;
+
+-- listando todos os produtos cadastrados
+SELECT 
+    id_produto, nome_produto 
+FROM 
+    Padaria_produto;
+
+-- listando o total de unidades vendidas por produto
+SELECT 
+    p.id_produto, p.nome_produto,
+    SUM(v.quantidade) AS total_unidades_vendidas
+FROM 
+    Padaria_produto p
+JOIN 
+    Padaria_venda v ON p.id_produto = v.id_produto
+GROUP BY 
+    p.id_produto, p.nome_produto
+ORDER BY 
+    total_unidades_vendidas DESC;
+
+-- listando o total de vendas de bolo de fuba
+SELECT 
+    p.nome_produto,
+    SUM(v.quantidade) AS total_unidades_vendidas
+FROM 
+    Padaria_produto p
+JOIN 
+    Padaria_venda v ON p.id_produto = v.id_produto
+WHERE 
+    p.nome_produto = 'Bolo de fubá'
+GROUP BY 
+    p.id_produto, 
+    p.nome_produto;
+ 
+-- listando o total de vendas de bolo de chocolate
+SELECT 
+    p.nome_produto,
+    SUM(v.quantidade) AS total_unidades_vendidas
+FROM 
+    Padaria_produto p
+JOIN 
+    Padaria_venda v ON p.id_produto = v.id_produto
+WHERE 
+    p.nome_produto = 'Bolo de chocolate'
+GROUP BY 
+    p.id_produto, 
+    p.nome_produto;
+
+-- Produtos vendidos em 2026-08-23
+SELECT 
+    data_venda, quantidade
+FROM 
+    Padaria_venda
+WHERE 
+    data_venda = '2026-08-24';
