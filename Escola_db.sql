@@ -1,5 +1,6 @@
 USE DB_T05072C_MURILLO_FREITAS;
 
+-- Tabela de Alunos
 CREATE TABLE Aluno_escola(
     id_aluno INT PRIMARY KEY AUTO_INCREMENT,
     nome_aluno VARCHAR (50) NOT NULL,
@@ -7,12 +8,14 @@ CREATE TABLE Aluno_escola(
     curso VARCHAR (100) NOT NULL
 );
 
+-- Tabela de Professores
 CREATE TABLE Professor_escola(
     id_professor INT PRIMARY KEY AUTO_INCREMENT,
     nome_professor VARCHAR (100) NOT NULL,
     curso VARCHAR (100) NOT NULL
 );
 
+-- Tabela de Comentarios
 CREATE TABLE Comentario_escola(
     id_comentario INT PRIMARY KEY AUTO_INCREMENT,
     id_aluno int NOT NULL,
@@ -23,6 +26,7 @@ CREATE TABLE Comentario_escola(
     FOREIGN KEY (id_professor) REFERENCES Professor_escola (id_professor)
 );
 
+-- Inserindo Alunos
 INSERT INTO Aluno_escola (nome_aluno, sobrenome_aluno, curso) 
 VALUES
     ('Ana', 'Silva', 'Engenharia de Software'),
@@ -48,6 +52,7 @@ VALUES
 
 SELECT * FROM Aluno_escola;
 
+-- Inserindo Professores
 INSERT INTO Professor_escola (nome_professor, curso) 
 VALUES
     ('Carlos Eduardo', 'Engenharia de Software'),
@@ -73,6 +78,7 @@ VALUES
 
 SELECT * FROM Professor_escola;
 
+-- Inserindo Comentarios
 INSERT INTO Comentario_escola (id_aluno, id_professor, comentario, nota_professor) 
 VALUES
     (1, 1, 'Excelente didática nas aulas de Engenharia de Software, explica muito bem os conceitos de arquitetura.', 9.5),
@@ -116,4 +122,31 @@ VALUES
     (19, 5, 'Professor referência na área médica, muito orgulho de ter aulas com ele.', 10.0),
     (20, 9, 'Aulas práticas de laboratório excelentes.', 9.5);
 
-SELECT * FROM Comentario_escola;
+-- Inserindo comentarios mais negativos
+INSERT INTO Comentario_escola (id_aluno, id_professor, comentario, nota_professor) 
+VALUES
+    (1, 3, 'O professor domina a matéria, mas a didática é um pouco arrastada e monótona.', 6.5),
+    (2, 8, 'Aulas muito teóricas para uma matéria que deveria ser mais prática. Deixou a desejar.', 5.0),
+    (3, 11, 'Professor muito rígido na correção e pouca flexibilidade com prazos.', 4.5),
+    (4, 6, 'Achei o conteúdo bastante desatualizado em relação ao mercado atual.', 5.5),
+    (5, 7, 'Cobrou na prova assuntos que não foram vistos em sala de aula.', 3.5),
+    (6, 13, 'O conteúdo é bom, mas o professor falta com frequência e desorganiza o cronograma.', 4.0),
+    (7, 10, 'Achei as explicações confusas e o material disponibilizado é fraco.', 5.8),
+    (8, 15, 'Didática mediana, o ritmo das aulas é muito rápido e dificulta o acompanhamento.', 6.0),
+    (9, 18, 'Péssima comunicação e demora muito para entregar as notas das avaliações.', 2.5),
+    (10, 12, 'Exige demais para o nível atual da turma, provas extremamente difíceis.', 4.8),
+    (11, 2, 'Professor justo na correção, mas as aulas podiam ser mais dinâmicas.', 7.0),
+    (12, 1, 'Boa aula, mas poderia ter um atendimento individualizado melhor nas dúvidas.', 7.2),
+    (13, 17, 'Conteúdo ok, mas a metodologia de ensino deixa um pouco a desejar.', 6.8),
+    (14, 20, 'O professor tem bom conhecimento, mas não sabe transmitir o conteúdo claramente.', 5.2),
+    (15, 14, 'Aulas regulares. O material de apoio ajudou mais do que as próprias explicações.', 6.0),
+    (16, 5, 'Muito exigente e atitude impaciente quando fazemos perguntas em sala.', 3.0),
+    (17, 9, 'Falta de organização com as datas das entregas dos trabalhos.', 4.2),
+    (18, 16, 'Explica rápido demais e não abre muito espaço para questionamentos.', 5.5),
+    (19, 4, 'Avaliações totalmente fora do padrão do que foi ensinado.', 3.8),
+    (20, 19, 'O professor é gente boa, mas a aula é muito desestruturada e perdida.', 6.2),
+    (3, 1, 'Matéria importante, mas o professor não conseguiu prender a atenção da turma.', 5.0),
+    (6, 8, 'Nota mediana. Poderia utilizar mais recursos tecnológicos no ensino.', 6.5),
+    (9, 11, 'Pontual, porém extremamente frio e pouco acessível para dúvidas pós-aula.', 5.8),
+    (12, 16, 'Didática confusa, tive que estudar praticamente tudo por fora.', 4.0),
+    (15, 3, 'Faltou um alinhamento claro sobre os critérios de nota dos trabalhos.', 5.5);
