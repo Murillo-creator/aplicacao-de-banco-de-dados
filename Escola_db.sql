@@ -154,11 +154,12 @@ VALUES
 -- Consultas
 USE DB_T05072C_MURILLO_FREITAS;
 -- Listar todos os alunos e seus cursos
-SELECT id_aluno, nome_aluno, curso FROM Aluno_escola;
+SELECT A.id_aluno, A.nome_aluno, A.curso 
+FROM Aluno_escola A;
 
 -- Listar todos os professores e cursos que lecionam
-SELECT id_professor, nome_professor, curso 
-FROM Professor_escola;
+SELECT P.id_professor, P.nome_professor, P.curso 
+FROM Professor_escola P;
 
 -- Listar comentarios e notas dos alunos com nome do professor
 SELECT C.id_aluno, C.comentario, C.nota_professor AS nota, P.nome_professor
