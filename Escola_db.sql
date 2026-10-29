@@ -150,3 +150,27 @@ VALUES
     (9, 11, 'Pontual, porém extremamente frio e pouco acessível para dúvidas pós-aula.', 5.8),
     (12, 16, 'Didática confusa, tive que estudar praticamente tudo por fora.', 4.0),
     (15, 3, 'Faltou um alinhamento claro sobre os critérios de nota dos trabalhos.', 5.5);
+
+-- Consultas
+USE DB_T05072C_MURILLO_FREITAS;
+-- Listar todos os alunos e seus cursos
+SELECT id_aluno, nome_aluno, curso FROM Aluno_escola;
+
+-- Listar todos os professores e cursos que lecionam
+SELECT id_professor, nome_professor, curso 
+FROM Professor_escola;
+
+-- Listar comentarios e notas dos alunos com nome do professor
+SELECT C.id_aluno, C.comentario, C.nota_professor AS nota, P.nome_professor
+FROM Comentario_escola C
+JOIN Professor_escola P ON C.id_professor = P.id_professor;
+
+-- Listar comentarios com nota abaixo de 6.0
+SELECT C.comentario, C.nota_professor AS nota
+FROM Comentario_escola C
+WHERE C.nota_professor <6;
+
+-- Listar comentarios com nota acima de 6.0
+SELECT C.comentario, C.nota_professor AS nota
+FROM Comentario_escola C
+WHERE C.nota_professor >6;
