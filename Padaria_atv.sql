@@ -26,7 +26,8 @@ CREATE TABLE Padaria_venda(
 TRUNCATE TABLE Padaria_fornecedor;
 
 INSERT INTO Padaria_fornecedor (nome_fornecedor, telefone)
-VALUES ('Distribuidora trigo', '(11) 98376-3223'),
+VALUES 
+       ('Distribuidora trigo', '(11) 98376-3223'),
        ('Fazenda lacto', '(11) 95433-3452'),
        ('Sadali', '(11) 96532-3564'),
        ('Mucakes', '(11) 99876-8765'),
@@ -41,10 +42,11 @@ VALUES ('Distribuidora trigo', '(11) 98376-3223'),
 SELECT * FROM Padaria_fornecedor;
 
 INSERT INTO Padaria_produto (nome_produto, preco, estoque, id_fornecedor)
-VALUES ('Bolo de chocolate', 5.99, 15, 4),
-       ('Leite', 5.26, 20, 2),
-       ('Presunto fatiado 200g', 3.99, 40, 3),
-       ('Pao frances', 0.80, 30, 1),
+VALUES 
+       ('Bolo de chocolate', 5.99, 15.000, 4),
+       ('Leite', 5.26, 20.000, 2),
+       ('Presunto fatiado 200g', 3.99, 40.000, 3),
+       ('Pao frances', 0.80, 30.000, 1),
        ('Café coado 300ml', 4.50, 50.000, 9),
        ('Pão de queijo (unidade)', 3.50, 100.000, 2),
        ('Coxinha de frango', 7.00, 25.000, 3),
@@ -150,8 +152,42 @@ GROUP BY
 
 -- Produtos vendidos em 2026-08-23
 SELECT 
-    data_venda, quantidade
+    v.data_venda, v.quantidade
 FROM 
-    Padaria_venda
+    Padaria_venda v
 WHERE 
-    data_venda = '2026-08-24';
+    v.data_venda = '2026-08-24';
+
+USE DB_T05072C_MURILLO_FREITAS;
+-- mais consultas
+-- produtos com preco acima de 5
+SELECT p.id_produto, p.nome_produto, p.preco 
+FROM Padaria_produto p
+WHERE p.preco > 5;
+
+-- produtos com o nome bolo
+SELECT p.id_produto, p.nome_produto, p.preco 
+FROM Padaria_produto p
+WHERE p.nome_produto LIKE '%Bolo%';
+
+-- produtos com menos de 20 unidades
+SELECT p.id_produto, p.nome_produto, p.estoque
+FROM Padaria_produto p
+WHERE p.estoque < 20;
+
+-- produtos que custam entre 3 a 10
+SELECT p.id_produto, p.nome_produto, p.preco 
+FROM Padaria_produto p
+WHERE p.preco BETWEEN 3 AND 10
+ORDER BY p.preco ASC;
+
+-- produtos que o nome comece com pao
+SELECT p.id_produto, p.nome_produto 
+FROM Padaria_produto p
+WHERE p.nome_produto LIKE 'Pao%';
+
+-- produtos com o nome bolo e com o estoque acima de 12
+SELECT p.id_produto, p.nome_produto, p.estoque, p.preco 
+FROM Padaria_produto p
+WHERE p.nome_produto LIKE 'Bolo%'
+AND p.estoque > 12;
