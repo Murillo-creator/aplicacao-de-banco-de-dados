@@ -108,3 +108,25 @@ VALUES
     (8, 6, '2026-04-10', '2026-04-15'),
     (10, 9, '2026-04-12', '2026-04-20');
 
+-- consultando dados
+USE DB_T05072C_MURILLO_FREITAS;
+-- clientes cadastrados
+SELECT * FROM Cliente_locadora;
+
+-- veiculos cadastrados 
+SELECT * FROM Veiculo_locadora;
+
+-- informacoes sobre cliente e o veiculo locado
+-- data de inicio e fim de locacao
+-- marca e modelo do veiculo
+SELECT c.id_cliente, c.nome_cliente, c.sobrenome, c.telefone, 
+    v.marca, v.modelo, d.iniciolocacao, d.finallocacao
+FROM Data_locacao d
+JOIN Cliente_locadora c ON d.id_cliente = c.id_cliente
+JOIN Veiculo_locadora v ON d.id_veiculo = v.id_veiculo;
+
+-- informacoes sobre veiculos locados em uma data especifica
+SELECT v.id_veiculo, v.marca, v.modelo, v.tipo, d.iniciolocacao
+FROM Data_locacao d
+JOIN Veiculo_locadora v ON d.id_veiculo = v.id_veiculo
+WHERE MONTH(d.iniciolocacao) = 4;
