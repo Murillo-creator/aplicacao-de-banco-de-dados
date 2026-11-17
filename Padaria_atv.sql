@@ -191,3 +191,33 @@ SELECT p.id_produto, p.nome_produto, p.estoque, p.preco
 FROM Padaria_produto p
 WHERE p.nome_produto LIKE 'Bolo%'
 AND p.estoque > 12;
+
+USE DB_T05072C_MURILLO_FREITAS;
+-- atividade padaria : JOIN
+-- Exibir o nome dos produtos e o nome do fornecedor de cada um
+SELECT p.nome_produto, f.nome_fornecedor
+FROM Padaria_produto p
+JOIN Padaria_fornecedor f
+ON p.id_fornecedor = f.id_fornecedor;
+
+-- Listar os produtos vendidos com suas quantidades e data da venda
+SELECT p.id_produto, p.nome_produto, v.quantidade, v.data_venda
+FROM Padaria_produto p
+JOIN Padaria_venda v
+ON p.id_produto = v.id_produto;
+
+-- Ver o nome do produto, valor total da venda e nome do fornecedor
+SELECT p.nome_produto, SUM(p.preco / v.quantidade) AS ValorTotal, f.nome_fornecedor
+FROM Padaria_produto p
+JOIN Padaria_venda v
+ON p.id_produto = v.id_produto
+JOIN Padaria_fornecedor f
+ON p.id_fornecedor = f.id_fornecedor
+GROUP BY p.id_produto;
+
+-- Exibir produtos com estoque abaixo de 30 unidades e seus fornecedores
+SELECT p.id_produto, p.nome_produto, p.estoque, f.id_fornecedor, f.nome_fornecedor
+FROM Padaria_produto p
+JOIN Padaria_fornecedor f
+ON p.id_fornecedor = f.id_fornecedor
+WHERE p.estoque < 30;
