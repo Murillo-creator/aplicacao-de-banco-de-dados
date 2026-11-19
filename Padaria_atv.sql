@@ -221,3 +221,27 @@ FROM Padaria_produto p
 JOIN Padaria_fornecedor f
 ON p.id_fornecedor = f.id_fornecedor
 WHERE p.estoque < 30;
+
+-- nome dos produtros em maiusculo
+SELECT UPPER(nome_produto) AS NomeMaiusculo
+FROM Padaria_produto;
+
+-- nome dos produtos em minisculo
+SELECT LOWER(nome_produto) AS NomeMinusculo
+FROM Padaria_produto;
+
+-- quantidade de letras no nome do produto
+SELECT nome_produto, LENGTH(nome_produto) AS QuantidadeCaracteres
+FROM Padaria_produto;
+
+-- Tres primeiras letras do nome do produto
+SELECT nome_produto, SUBSTRING(nome_produto, 1, 3) AS TresPrimeirasLetras
+FROM Padaria_produto;
+
+-- Preco arredondado para inteiro mais proximo 
+SELECT nome_produto, preco, ROUND(preco, 0) AS PrecoArredondado
+FROM Padaria_produto;
+
+-- data atual junto com os produtos
+SELECT NOW(), nome_produto
+FROM Padaria_produto;
